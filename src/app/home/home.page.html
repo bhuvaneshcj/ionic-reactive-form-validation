@@ -1,0 +1,48 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <ion-title>Reactive Forms</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+
+  <form (ngSubmit)="onSubmit()" [formGroup]="form">
+    <ion-list>
+
+      <ion-item>
+        <ion-label position="floating">Name *</ion-label>
+        <ion-input type="text" formControlName="name"></ion-input>
+
+        <ion-note slot="error" *ngIf="!form.get('name').valid && form.get('name').touched">
+          <span *ngIf="form.get('name').hasError('required')">Name is required</span>
+        </ion-note>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Email *</ion-label>
+        <ion-input type="text" formControlName="email"></ion-input>
+
+        <ion-note slot="error" *ngIf="!form.get('email').valid && form.get('email').touched">
+          <span *ngIf="form.get('email').hasError('required')">Email is required</span>
+          <span *ngIf="form.get('email').hasError('email')">Invalid Email</span>
+        </ion-note>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Password *</ion-label>
+        <ion-input type="text" formControlName="password"></ion-input>
+
+        <ion-note slot="error" *ngIf="!form.get('password').valid && form.get('password').touched">
+          <span *ngIf="form.get('password').hasError('required')">Password is required</span>
+          <span *ngIf="form.get('password').hasError('minlength')">Password should be min 8 characters.</span>
+        </ion-note>
+      </ion-item>
+
+    </ion-list>
+
+    <div class="form-btn">
+      <ion-button type="submit" expand="block" color="primary">Submit</ion-button>
+    </div>
+  </form>
+
+</ion-content>
